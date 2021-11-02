@@ -6,6 +6,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 import com.example.Greetings.model.Greeting;
 import com.example.Greetings.model.User;
@@ -33,6 +35,12 @@ public class GreetingService implements IGreetingService {
 	@Override
 	public Optional<Greeting> getGreetingById(long id) {
 		return greetingRepository.findById(id);
+	}
+
+	@Override
+	public List<Greeting> getGreetings() {
+
+		return greetingRepository.findAll();
 	}
 
 }
