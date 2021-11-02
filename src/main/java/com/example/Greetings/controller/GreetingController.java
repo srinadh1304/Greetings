@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,10 +51,10 @@ public class GreetingController {
 	        return greetingService.editGreeting(name1, name2);
 	    }
 
-	    @PutMapping("put/{name}")
-	    public Greeting sayHello(@PathVariable String name)
+	    @DeleteMapping("/delete/{name}")
+	    public List<Greeting> deleteGreeting(@PathVariable String name)
 		{
-	        return new Greeting(counter.incrementAndGet(),String.format(template, name));
+	        
+			return greetingService.deleteGreeting(name);
 	    }
-	 
 }
