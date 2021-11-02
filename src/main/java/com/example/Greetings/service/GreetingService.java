@@ -28,13 +28,12 @@ public class GreetingService implements IGreetingService {
 	public Greeting addGreeting(User user) 
 	{
 		String message = String.format(template, (user.toString().isEmpty())? "Hello World": user.toString());
-		Greeting greeting = new Greeting(counter.incrementAndGet(),message);
 		return greetingRepository.save(new Greeting(counter.incrementAndGet(),message));
 	}
 
 	@Override
-	public Optional<Greeting> getGreetingById(long id) {
-		return greetingRepository.findById(id);
+	public Greeting getGreetingById(long id) {
+		return greetingRepository.findById(id).get();
 	}
 
 	@Override
@@ -42,5 +41,24 @@ public class GreetingService implements IGreetingService {
 
 		return greetingRepository.findAll();
 	}
+	@Override
+	public Greeting editGreeting(String name1,String name2)
+	{
+		List<Greeting> greetingList=greetingRepository.findAll();
+		Greeting greetingToEdit = null;
+		for(int index=0;index<greetingList.size();index++)
+		{
+			if(greetingList.get(index).getContent().contains(name1))
+			{
+				greetingToEdit=greetingList.get(index);
+				break;
+			}
+		}
+		String message=String.format(template,(name2.isEmpty())?"Hello world":name2);
+		greetingToEdit.setContent(message);
+		return greetingRepository.save(greetingToEdit);
+
+	}
+	
 
 }

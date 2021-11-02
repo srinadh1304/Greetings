@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 public interface IGreetingService {
 	Greeting addGreeting(User user);
-	Optional<Greeting> getGreetingById(long id);
+	Greeting getGreetingById(long id);
 	List<Greeting> getGreetings();
+	Greeting editGreeting(String name1,String name2);
+	
 }
