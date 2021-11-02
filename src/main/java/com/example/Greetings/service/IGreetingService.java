@@ -10,5 +10,6 @@ public interface IGreetingService {
 	Greeting getGreetingById(long id);
 	List<Greeting> getGreetings();
 	Greeting editGreeting(String name1,String name2);
-	
+	List<Greeting> deleteGreeting(String name);
+
 }
