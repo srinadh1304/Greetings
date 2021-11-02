@@ -52,5 +52,10 @@ public class GreetingController {
 		public ResponseEntity<String> getEmployeeByID(@RequestParam(name = "id") int id) {
 			return new ResponseEntity(greetingService.getGreetingById(id), HttpStatus.OK);
 		}
+	 @GetMapping(value = "/getgreetings")
+		public ResponseEntity<String> getGreetings() {
+			return new ResponseEntity(greetingService.getGreetings(), HttpStatus.OK);
+	}
+
 	 
 }
